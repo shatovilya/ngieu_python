@@ -1,7 +1,4 @@
-##Задание №1
-
-
-##Проверка, являеться ли введенное значение числом (положительныv, беззнаковым).
+##Проверка, являеться ли введенное значение числом (положительным, беззнаковым).
 def isdigit(string):
     if string.isdigit(): 
             return True
@@ -9,6 +6,18 @@ def isdigit(string):
             return False
 
 ##Проверка, условия что Координаты заданы не более чем с шестью знаками после точки.
+
+
+def get_count(number):
+    s = str(number)
+    if '.' in s:
+        return abs(s.find('.') - len(s)) - 1
+    else:
+        return 0
+
+
+
+##Задание №1
 def zadanie1(string):
     if isdigit(string) == True:
         i = int(string)
@@ -24,11 +33,15 @@ def zadanie1(string):
 # - Координаты заданы не более чем с шестью знаками после точки.
 
 def zadanie2(string):
-    x, y = map(float, string.split()) 
-    if ((x*x+y*y>=4) and (y>=0) and (y<=x) and (x<=2)):
-        return print("YES")
+  ## проверка значения вставить на float  
+    x, y = map(float, string.split())
+    if (get_count(x)<=6 and get_count(y)<=6 and get_count(x)>=0 and get_count(y)>=0):
+        if ((x*x+y*y>=4) and (y>=0) and (y<=x) and (x<=2)):
+            return print("YES")
+        else: 
+            return print("NO")
     else:
-        return print("NO")
+        return print("Значение x или y содержит больше шести знаков после запятой")
 
 print("Проверка Задание 1:")
 zadanie1 ("560")
@@ -82,3 +95,4 @@ zadanie2 ("1.673 1.464")
 zadanie2 ("1.801 1.789")
 zadanie2 ("1.456 1.493")
 zadanie2 ("1.912 1.442")
+print(get_count(193.1))
